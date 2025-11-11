@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador Sensibilidades Ðeath</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#000;
+  font-family:'Poppins', sans-serif;
+  text-align:center;
+  overflow:hidden;
+  min-height:100vh;
+  position:relative;
+  color:#FFD700;
+}
+.rayos {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: repeating-linear-gradient(
+    120deg,
+    rgba(255,215,0,0.15) 0%,
+    rgba(255,255,0,0.05) 5%,
+    transparent 10%
+  );
+  animation: rayos 4s linear infinite;
+  z-index:0;
+}
+@keyframes rayos { from {background-position:0 0;} to {background-position:1000px 1000px;} }
+h1 {
+  font-size:2.2em;
+  text-shadow:0 0 20px #FFD700,0 0 40px #FFC300;
+  margin-bottom:15px;
+  letter-spacing:2px;
+  position:relative; z-index:1;
+}
+select {
+  background:#111; color:#FFD700; border:2px solid #FFD700;
+  padding:10px; border-radius:10px; font-size:1em; margin-bottom:20px;
+  transition:0.3s; position:relative; z-index:1;
+}
+select:hover { box-shadow:0 0 15px #FFD700; }
+.boton {
+  display:inline-block;
+  background:linear-gradient(90deg,#FFD700,#FFB800);
+  color:#000; border:none; padding:12px 25px; margin:10px;
+  border-radius:30px; font-size:1em; font-weight:bold;
+  cursor:pointer; transition:all 0.3s ease;
+  box-shadow:0 0 25px #FFD700; position:relative; z-index:1;
+}
+.boton:hover { transform:scale(1.05); box-shadow:0 0 35px #FFEA00,0 0 60px #FFD700; }
+table {
+  margin:25px auto; width:90%; border-collapse:collapse;
+  border:2px solid #FFD700; box-shadow:0 0 20px #FFD700;
+  opacity:0; transform:translateY(20px); transition:all 0.6s ease;
+  position:relative; z-index:1;
+}
+th, td { padding:12px; border:1px solid #FFD700; color:#fff; }
+th { background:#FFD700; color:#000; font-weight:bold; }
+tr:nth-child(even) { background: rgba(255,215,0,0.1); }
+.visible { opacity:1; transform:translateY(0); }
+.footer {
+  margin-top:25px; font-size:0.9em; color:#FFD700;
+  text-shadow:0 0 8px #FFD700; position: relative; z-index:1;
+}
+.neon {
+  animation: neonBlink 1s infinite alternate;
+  font-weight:bold;
+}
+@keyframes neonBlink {
+  0% { text-shadow:0 0 5px #FFD700,0 0 10px #FFC300,0 0 20px #FFD700; color:#FFD700; }
+  50% { text-shadow:0 0 10px #FFD700,0 0 20px #FFC300,0 0 40px #FFD700; color:#FFF700; }
+  100% { text-shadow:0 0 5px #FFD700,0 0 10px #FFC300,0 0 20px #FFD700; color:#FFD700; }
+}
+</style>
+</head>
+<body>
+<div class="rayos"></div>
+<h1>⚡ GENERADOR DE SENSIBILIDADES FF ⚡</h1>
+
+<select id="dispositivo">
+<!-- Samsung -->
+<option value="Samsung Galaxy S23">Samsung Galaxy S23</option>
+<option value="Samsung Galaxy S22">Samsung Galaxy S22</option>
+<option value="Samsung Galaxy A54">Samsung Galaxy A54</option>
+<option value="Samsung Galaxy A14">Samsung Galaxy A14</option>
+<option value="Samsung Galaxy A05">Samsung Galaxy A05</option>
+<option value="Samsung Galaxy A25 5G">Samsung Galaxy A25 5G</option> <!-- NUEVO -->
+
+<!-- Xiaomi / Poco -->
+<option value="Xiaomi Redmi 12">Xiaomi Redmi 12</option>
+<option value="Xiaomi Redmi Note 12">Xiaomi Redmi Note 12</option>
+<option value="Poco X5">Poco X5</option>
+<option value="Poco F5">Poco F5</option>
+
+<!-- Huawei / Honor -->
+<option value="Huawei P60">Huawei P60</option>
+<option value="Huawei P50">Huawei P50</option>
+<option value="Huawei Mate 50">Huawei Mate 50</option>
+<option value="Huawei Nova 11">Huawei Nova 11</option>
+<option value="Honor Magic 6">Honor Magic 6</option>
+
+<!-- Realme -->
+<option value="Realme 12">Realme 12</option>
+<option value="Realme 12 Pro">Realme 12 Pro</option>
+<option value="Realme Narzo 60">Realme Narzo 60</option>
+<option value="Realme Narzo 70">Realme Narzo 70</option>
+
+<!-- Vivo / Oppo -->
+<option value="Vivo V29">Vivo V29</option>
+<option value="Vivo Y100">Vivo Y100</option>
+<option value="Vivo X90">Vivo X90</option>
+<option value="Vivo V25">Vivo V25</option>
+<option value="Oppo Reno 11">Oppo Reno 11</option>
+<option value="Oppo F23">Oppo F23</option>
+<option value="Oppo A78">Oppo A78</option>
+<option value="Oppo Find X6">Oppo Find X6</option>
+
+<!-- OnePlus -->
+<option value="OnePlus 11">OnePlus 11</option>
+<option value="OnePlus Nord 3">OnePlus Nord 3</option>
+<option value="OnePlus 10R">OnePlus 10R</option>
+<option value="OnePlus Nord CE 3">OnePlus Nord CE 3</option>
+
+<!-- iPhone -->
+<option value="iPhone 15">iPhone 15</option>
+<option value="iPhone 14">iPhone 14</option>
+<option value="iPhone 13">iPhone 13</option>
+<option value="iPhone 12">iPhone 12</option>
+
+<!-- Motorola -->
+<option value="Motorola Edge 40">Motorola Edge 40</option>
+<option value="Motorola Moto G73">Motorola Moto G73</option>
+<option value="Motorola G82">Motorola G82</option>
+<option value="Motorola G22">Motorola G22</option>
+
+<!-- Google Pixel -->
+<option value="Google Pixel 8">Google Pixel 8</option>
+<option value="Google Pixel 7">Google Pixel 7</option>
+<option value="Google Pixel 6">Google Pixel 6</option>
+
+<!-- Asus / Lenovo -->
+<option value="Asus ROG Phone 7">Asus ROG Phone 7</option>
+<option value="Asus Zenfone 10">Asus Zenfone 10</option>
+<option value="Lenovo Legion Y90">Lenovo Legion Y90</option>
+<option value="Lenovo K14">Lenovo K14</option>
+
+<!-- Tecno / Infinix -->
+<option value="Tecno Camon 20">Tecno Camon 20</option>
+<option value="Tecno Spark 10">Tecno Spark 10</option>
+<option value="Infinix Zero 5G 2023">Infinix Zero 5G 2023</option>
+<option value="Infinix Note 30">Infinix Note 30</option>
+
+<!-- Otros conocidos -->
+<option value="Sony Xperia 1 V">Sony Xperia 1 V</option>
+<option value="ZTE Axon 40">ZTE Axon 40</option>
+<option value="Nubia Red Magic 8">Nubia Red Magic 8</option>
+<option value="LG Velvet">LG Velvet</option>
+<option value="Alcatel 3L">Alcatel 3L</option>
+<option value="Micromax IN Note 2">Micromax IN Note 2</option>
+
+<!-- Emuladores -->
+<option value="BlueStacks">BlueStacks</option>
+<option value="LDPlayer">LDPlayer</option>
+<option value="NoxPlayer">NoxPlayer</option>
+</select>
+
+<div>
+<button class="boton" onclick="generar(true)">GENERAR CON DPI</button>
+<button class="boton" onclick="generar(false)">GENERAR SIN DPI</button>
+</div>
+
+<table id="tabla">
+<thead>
+<tr><th>Configuración</th><th>Valor</th></tr>
+</thead>
+<tbody id="resultados"></tbody>
+</table>
+
+<div class="footer">Creado por Ðeath ⚡</div>
+
+<script>
+function generar(conDpi){
+const sensibilidad=[
+"General","Mira de punto rojo","Mira 2x","Mira 4x","Mira francotirador","Botón de cámara 360°","Botón de disparo"
+];
+const resultados=document.getElementById("resultados");
+resultados.innerHTML="";
+
+// DPI aleatorio entre 360 y 800
+const dpiMin=360;
+const dpiMax=800;
+const dpiValor = Math.floor(Math.random()*(dpiMax-dpiMin+1))+dpiMin;
+
+sensibilidad.forEach(item=>{
+const valor=Math.floor(Math.random()*201); // 0-200
+resultados.innerHTML+=`<tr><td>${item}</td><td class="neon">${valor}</td></tr>`;
+});
+
+if(conDpi){
+  resultados.innerHTML+=`<tr><td><strong>DPI</strong></td><td class="neon"><strong>${dpiValor}</strong></td></tr>`;
+}
+
+document.getElementById("tabla").classList.add("visible");
+}
+</script>
+</body>
+</html>
