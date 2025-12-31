@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFXZ STORE | Catálogo Oficial</title>
+    <!-- Fuentes Gamer & Tech -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=Share+Tech+Mono&family=Consolas&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: #101015;
+            --ffxz-color: #ff0055; /* Rojo */
+            --matrix-color: #00ff00; /* Verde */
+            --ctt-color: #00ffea; /* Cian */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, button, .price { font-family: 'Orbitron', sans-serif; }
+
+        /* HEADER */
+        header {
+            background: rgba(0,0,0,0.95);
+            padding: 20px 40px;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        .logo { font-size: 2rem; font-weight: bold; letter-spacing: 2px; }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+        }
+        .hero p { color: #aaa; margin-top: 10px; }
+
+        /* GRID DE PRODUCTOS */
+        .products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* TARJETA GENERAL */
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+            width: 320px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover { transform: translateY(-10px); z-index: 10; }
+
+        /* ESTILOS ESPECÍFICOS */
+        .card-ffxz:hover { border-color: var(--ffxz-color); box-shadow: 0 0 25px rgba(255, 0, 85, 0.3); }
+        .card-matrix:hover { border-color: var(--matrix-color); box-shadow: 0 0 25px rgba(0, 255, 0, 0.3); }
+        .card-ctt:hover { border-color: var(--ctt-color); box-shadow: 0 0 25px rgba(0, 255, 234, 0.3); }
+
+        /* STICKER PREMIUM */
+        .sticker {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ffd700, #ffaa00);
+            color: black;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 4px;
+            z-index: 20;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            animation: pulseSticker 2s infinite;
+        }
+        @keyframes pulseSticker { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* PREVIEW AREAS */
+        .preview-area { height: 180px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #222; }
+        .preview-ffxz { background: radial-gradient(circle, #2a000e 0%, #000 100%); color: var(--ffxz-color); }
+        .preview-matrix {
+            background: #000;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, .1) 25%, rgba(0, 255, 0, .1) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .1) 75%, rgba(0, 255, 0, .1) 76%, transparent 77%, transparent);
+            background-size: 20px 20px;
+            color: var(--matrix-color);
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .preview-ctt { background: #020202; color: var(--ctt-color); font-family: 'Consolas', monospace; flex-direction: column; justify-content: center; }
+
+        /* INFO PRODUCTO */
+        .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .title { font-size: 1.3rem; margin-bottom: 8px; font-weight: bold; }
+        .desc { color: #999; font-size: 0.85rem; margin-bottom: 15px; min-height: 35px; }
+        .features { list-style: none; margin-bottom: 15px; font-size: 0.85rem; color: #ddd; flex: 1; }
+        .features li { margin-bottom: 5px; display: flex; align-items: center; }
+        .features i { margin-right: 8px; font-size: 0.8rem; }
+        .price-tag { font-size: 1.8rem; font-weight: bold; display: block; margin-bottom: 15px; text-align: center; }
+
+        /* BOTONES */
+        .btn-buy {
+            width: 100%; padding: 12px; color: white; border: none; font-size: 1rem;
+            font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s;
+            font-family: 'Orbitron', sans-serif; margin-bottom: 8px; text-transform: uppercase;
+        }
+        .btn-buy:hover { transform: scale(1.02); filter: brightness(1.2); }
+        .btn-wa { display: block; text-align: center; color: #25d366; text-decoration: none; font-size: 0.75rem; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">FFXZ <span style="color:#fff">STORE</span></div>
+    </header>
+
+    <div class="hero">
+        <h1>CATÁLOGO <span style="color:var(--ctt-color)">VIP 2025</span></h1>
+        <p>Selecciona tu panel. Entrega inmediata.</p>
+    </div>
+
+    <div class="products-grid">
+
+        <!-- ========================================== -->
+        <!-- PRODUCTO 1: AUXILIO VIP (ROJO) - $2.00 -->
+        <!-- ========================================== -->
+        <div class="product-card card-ffxz">
+            <div class="preview-area preview-ffxz">
+                <div style="text-align:center;">
+                    <i class="fas fa-crosshairs" style="font-size:2.5rem; margin-bottom:10px;"></i>
+                    <h3>FFXZ V1</h3>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="title" style="color:var(--ffxz-color)">AUXILIO VIP 🩸</div>
+                <p class="desc">Panel clásico rojo. Estabilidad máxima.</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Headtrick & Aimlock</li>
+                    <li><i class="fas fa-check"></i> Auxilio de Mira</li>
+                </ul>
+                <span class="price-tag" style="color:var(--ffxz-color)">$2.00 USD</span>
+
+                <!-- BOTÓN PAYPAL CORREGIDO -->
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <!-- CORREO ACTUALIZADO AQUÍ -->
+                    <input type="hidden" name="business" value="alexandmar2024@gmail.com">
+                    <input type="hidden" name="item_name" value="Panel Auxilio VIP (Rojo)">
+                    <input type="hidden" name="amount" value="2.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit" class="btn-buy" style="background:#0070ba;">
+                        <i class="fab fa-paypal"></i> Comprar
+                    </button>
+                </form>
+
+                <a href="https://wa.me/573018489378?text=Hola,%20compré%20el%20Panel%20ROJO%20($2),%20envío%20captura." class="btn-wa">Enviar Comprobante</a>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRODUCTO 2: DEATH VIP (VERDE) - $4.00 -->
+        <!-- ========================================== -->
+        <div class="product-card card-matrix">
+            <div class="preview-area preview-matrix">
+                <div style="text-align:center;">
+                    <i class="fas fa-terminal" style="font-size:2.5rem; margin-bottom:10px;"></i>
+                    <h3>DEATH OS</h3>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="title" style="color:var(--matrix-color)">DEATH VIP 💉</div>
+                <p class="desc">Edición Matrix. Login seguro y optimización.</p>
+                <ul class="features">
+                    <li><i class="fas fa-key"></i> Sistema Key (Seguridad)</li>
+                    <li><i class="fas fa-tachometer-alt"></i> Monitor FPS/Ping</li>
+                </ul>
+                <span class="price-tag" style="color:var(--matrix-color)">$4.00 USD</span>
+
+                <!-- BOTÓN PAYPAL CORREGIDO -->
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <!-- CORREO ACTUALIZADO AQUÍ -->
+                    <input type="hidden" name="business" value="alexandmar2024@gmail.com">
+                    <input type="hidden" name="item_name" value="Panel Death VIP (Verde)">
+                    <input type="hidden" name="amount" value="4.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit" class="btn-buy" style="background:var(--matrix-color); color:black;">
+                        <i class="fab fa-paypal"></i> Comprar
+                    </button>
+                </form>
+
+                <a href="https://wa.me/573018489378?text=Hola,%20compré%20el%20Panel%20VERDE%20($4),%20envío%20captura." class="btn-wa">Enviar Comprobante</a>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRODUCTO 3: CTT V2 (CIAN) - $5.00 -->
+        <!-- ========================================== -->
+        <div class="product-card card-ctt">
+            <div class="sticker">💎 PREMIUM</div>
+            <div class="preview-area preview-ctt">
+                <div style="text-align:center;">
+                    <h4 style="margin-bottom:10px; letter-spacing:3px;">CTT SYSTEM</h4>
+                    <div style="border:1px solid var(--ctt-color); padding:5px; width:80%; margin:0 auto; font-size:12px;">KEY: ****</div>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="title" style="color:var(--ctt-color)">CTT FEMALE V2 🤖</div>
+                <p class="desc">Voz IA femenina, Spoof ID y Regedit VIP.</p>
+                <ul class="features">
+                    <li><i class="fas fa-microphone"></i> Asistente de Voz</li>
+                    <li><i class="fas fa-fingerprint"></i> Anti-Blacklist ID</li>
+                </ul>
+                <span class="price-tag" style="color:var(--ctt-color)">$5.00 USD</span>
+
+                <!-- BOTÓN PAYPAL CORREGIDO -->
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <!-- CORREO ACTUALIZADO AQUÍ -->
+                    <input type="hidden" name="business" value="alexandmar2024@gmail.com">
+                    <input type="hidden" name="item_name" value="Panel CTT Female V2 (Azul)">
+                    <input type="hidden" name="amount" value="5.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <button type="submit" class="btn-buy" style="background:linear-gradient(90deg, #0099aa, var(--ctt-color));">
+                        <i class="fab fa-paypal"></i> Comprar
+                    </button>
+                </form>
+
+                <a href="https://wa.me/573018489378?text=Hola,%20compré%20el%20Panel%20PREMIUM%20CTT%20($5),%20envío%20captura." class="btn-wa">Enviar Comprobante</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="text-align:center; padding:30px; color:#555; border-top:1px solid #111;">
+        <p>Pagos procesados de forma segura por PayPal</p>
+        <p>&copy; 2025 FFXZ Codes.</p>
+    </footer>
+
+</body>
+</html>
